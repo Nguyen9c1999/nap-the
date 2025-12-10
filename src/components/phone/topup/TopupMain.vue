@@ -22,13 +22,13 @@
             <!-- Hiển thị logo sau khi chọn -->
             <template #label>
               <div v-if="currentOption" class="flex items-center w-full h-full">
-                <img :src="currentOption.icon" class="h-6 w-auto" />
+                <img :src="currentOption.icon" class="h-6 w-auto"  alt="nhà mạng"/>
               </div>
             </template>
 
             <el-option v-for="item in options" :key="item.value" :value="item.value">
               <div class="flex items-center space-x-2">
-                <img :src="item.icon" class="w-6 h-6 rounded-full" />
+                <img :src="item.icon" class="w-6 h-6 rounded-full"  alt="nhà mạng"/>
                 <span class="text-base capitalize">{{ item.label }}</span>
               </div>
             </el-option>
@@ -61,11 +61,14 @@
       Nhấn Nạp ngay đồng nghĩa với việc Quý khách đồng ý với chính sách và điều khoản
     </p>
   </section>
+  <ModalBase></ModalBase>
 </template>
 
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
 import DenominationSelect from '../DenominationSelect.vue'
+import { PhoneFilled } from '@element-plus/icons-vue'
+import ModalBase from '@/components/modal/ModalBase.vue'
 
 const input3 = ref('')       // số điện thoại
 const select = ref<string>('') // value nhà mạng
@@ -112,7 +115,7 @@ watch(input3, (val) => {
 })
 
 const denominations = ref<number[]>([10000, 20000, 50000, 100000, 200000, 500000])
-const selectedDenomination = ref<number | null | undefined>(denominations.value[0] ?? null)
+const selectedDenomination = ref<number | undefined>(denominations.value[0] ?? undefined)
 </script>
 
 <style scoped></style>
